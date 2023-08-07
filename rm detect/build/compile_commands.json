@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/buzhidao/Desktop/rm detect/build",
+  "command": "/usr/bin/g++  -I\"/home/buzhidao/Desktop/rm detect/include\" -isystem /usr/local/include/opencv4 -g -o CMakeFiles/WLX.dir/main.cpp.o -c \"/home/buzhidao/Desktop/rm detect/main.cpp\"",
+  "file": "/home/buzhidao/Desktop/rm detect/main.cpp"
+}
+]

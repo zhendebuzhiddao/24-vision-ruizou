@@ -1,0 +1,3 @@
+/home/buzhidao/Desktop/rm detect/build/CMakeFiles/WLX.dir
+/home/buzhidao/Desktop/rm detect/build/CMakeFiles/edit_cache.dir
+/home/buzhidao/Desktop/rm detect/build/CMakeFiles/rebuild_cache.dir
