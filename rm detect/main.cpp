@@ -3,7 +3,7 @@
 
 using namespace std;
 using namespace cv;
-
+//声明一个最小二乘圆拟合的函数
 int LeastSquaresCircleFitting(vector<cv::Point2d> &m_Points, cv::Point2d &Centroid, double &dRadius);
 
 int main()
@@ -30,6 +30,7 @@ vector<Point2d> points;
 
 while (true)
 {
+// 从视频中读取一帧
 video >> video1;
 if (video1.empty())
 break;
@@ -75,13 +76,14 @@ waitKey(10000);
 }
 //return 0;
 }
-
-int LeastSquaresCircleFitting(vector<cv::Point2d> &m_Points, cv::Point2d &Centroid, double &dRadius)//拟合圆函数
+// 最小二乘圆拟合函数定义
+int LeastSquaresCircleFitting(vector<cv::Point2d> &m_Points, cv::Point2d &Centroid, double &dRadius)
 {
 if (!m_Points.empty())
 {
 int iNum = (int)m_Points.size();
 if (iNum < 3)return 1;
+// 对用于计算的变量初始化
 double X1 = 0.0;
 double Y1 = 0.0;
 double X2 = 0.0;
@@ -93,6 +95,7 @@ double X1Y2 = 0.0;
 double X2Y1 = 0.0;
 vector<cv::Point2d>::iterator iter;
 vector<cv::Point2d>::iterator end = m_Points.end();
+// 计算各项的总和
 for (iter = m_Points.begin(); iter != end; ++iter)
 {
 X1 = X1 + (*iter).x;
@@ -105,6 +108,7 @@ X1Y1 = X1Y1 + (*iter).x * (*iter).y;
 X1Y2 = X1Y2 + (*iter).x * (*iter).y * (*iter).y;
 X2Y1 = X2Y1 + (*iter).x * (*iter).x * (*iter).y;
 }
+// 计算圆方程的系数
 double C = 0.0;
 double D = 0.0;
 double E = 0.0;
@@ -120,13 +124,13 @@ G = iNum * Y2 - Y1 * Y1;
 H = iNum * X2Y1 + iNum * Y3 - (X2 + Y2) * Y1;
 a = (H * D - E * G) / (C * G - D * D);
 b = (H * C - E * D) / (D * D - G * C);
-c = -(a * X1 + b * Y1 + X2 + Y2) / iNum;
+c = -(a * X1 + b * Y1 + X2 + Y2) / iNum;// 求解圆系数
 double A = 0.0;
 double B = 0.0;
 double R = 0.0;
 A = a / (-2);
 B = b / (-2);
-R = double(sqrt(a * a + b * b - 4 * c) / 2);
+R = double(sqrt(a * a + b * b - 4 * c) / 2);//计算圆心和半径
 Centroid.x = A;
 Centroid.y = B;
 dRadius = R;
